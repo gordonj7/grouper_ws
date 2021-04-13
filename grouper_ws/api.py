@@ -103,7 +103,7 @@ class Grouper(object):
         if isinstance(group, Group):
             group = group.group_name
 
-        url = 'servicesRest/v2_1_005/groups/{0}/members'.format(quote(group, safe=''))
+        url = 'servicesRest/v2_5_000/groups/{0}/members'.format(quote(group, safe=''))
 
         members_list = [member_to_subject_lookup(member) for member in members]
 
@@ -122,7 +122,7 @@ class Grouper(object):
         if isinstance(group, Group):
             group = group.group_name
 
-        url = 'servicesRest/v2_1_005/groups/{0}/members'.format(quote(group, safe=''))
+        url = 'servicesRest/v2_5_000/groups/{0}/members'.format(quote(group, safe=''))
 
         members_list = [member_to_subject_lookup(member) for member in members]
 
@@ -137,7 +137,7 @@ class Grouper(object):
         return response
 
     def find_groups(self, query):
-        url = 'servicesRest/v2_1_005/groups/'
+        url = 'servicesRest/v2_5_000/groups/'
 
         data = {
             'WsRestFindGroupsRequest': {
@@ -150,7 +150,7 @@ class Grouper(object):
         return response
 
     def find_stems(self, query):
-        url = 'servicesRest/v2_1_005/stems/'
+        url = 'servicesRest/v2_5_000/stems/'
 
         data = {
             'WsRestFindStemsRequest': {
@@ -163,7 +163,7 @@ class Grouper(object):
         return response
 
     def lookup_groups(self, groups):
-        url = 'servicesRest/v2_1_005/groups/'
+        url = 'servicesRest/v2_5_000/groups/'
         group_list = [{'groupName': group} for group in groups]
 
         data = {
@@ -181,7 +181,7 @@ class Grouper(object):
         if isinstance(group, Group):
             group = group.group_name
 
-        url = 'servicesRest/v2_1_005/groups/{0}/members'.format(quote(group, safe=''))
+        url = 'servicesRest/v2_5_000/groups/{0}/members'.format(quote(group, safe=''))
 
         members_list = [member_to_subject_lookup(member) for member in members]
 
@@ -197,7 +197,7 @@ class Grouper(object):
 
     def get_members(self, groups, subject_attributes=DEFAULT_SUBJECT_ATTRIBUTES,
         details=True, page_size=None, page=1):
-        url = 'servicesRest/v2_1_005/groups'
+        url = 'servicesRest/v2_5_000/groups'
         group_list = [{'groupName': group} for group in groups]
 
         data = {
@@ -218,7 +218,7 @@ class Grouper(object):
         return response
 
     def get_subjects(self, subjects, subject_attributes=DEFAULT_SUBJECT_ATTRIBUTES):
-        url = 'servicesRest/v2_1_005/subjects'
+        url = 'servicesRest/v2_5_000/subjects'
 
         subjects_list = [member_to_subject_lookup(subject) for subject in subjects]
 
@@ -237,7 +237,7 @@ class Grouper(object):
         if isinstance(group, Group):
             group = group.group_name
 
-        url = 'servicesRest/v2_1_005/groups/{0}/memberships'.format(quote(group, safe=''))
+        url = 'servicesRest/v2_5_000/groups/{0}/memberships'.format(quote(group, safe=''))
         member_filter_values = ['All', 'Effective', 'Immediate', 'Composite', 'NonImmediate']
         if member_filter not in member_filter_values:
             raise Exception("member_filter must be in '{0}'".format(member_filter_values))
@@ -260,7 +260,7 @@ class Grouper(object):
         subject_attributes=DEFAULT_SUBJECT_ATTRIBUTES,
         group_details=False
     ):
-        url = 'servicesRest/v2_1_005/memberships'
+        url = 'servicesRest/v2_5_000/memberships'
 
         members_list = [member_to_subject_lookup(member) for member in members]
 
@@ -284,7 +284,7 @@ class Grouper(object):
         return response
 
     def save_groups(self, groups):
-        url = 'servicesRest/v2_1_005/groups'
+        url = 'servicesRest/v2_5_000/groups'
 
         groups = [str_to_group(group) for group in groups]
 
@@ -300,7 +300,7 @@ class Grouper(object):
         return response
 
     def save_stems(self, stems):
-        url = 'servicesRest/v2_1_005/stems'
+        url = 'servicesRest/v2_5_000/stems'
 
         stems = [str_to_stem(stem) for stem in stems]
 
@@ -315,7 +315,7 @@ class Grouper(object):
         return response
 
     def delete_groups(self, groups):
-        url = 'servicesRest/v2_1_005/groups'
+        url = 'servicesRest/v2_5_000/groups'
 
         groups = [str_to_group(group) for group in groups]
 
@@ -331,7 +331,7 @@ class Grouper(object):
         return response
 
     def delete_stems(self, stems):
-        url = 'servicesRest/v2_1_005/stems'
+        url = 'servicesRest/v2_5_000/stems'
 
         stems = [str_to_stem(stem) for stem in stems]
 
@@ -347,7 +347,7 @@ class Grouper(object):
 
     def get_privileges(self, privilege_type=None, privilege_name=None,
                        stem=None, group=None, member=None):
-        url = 'servicesRest/v2_1_005/grouperPrivileges'
+        url = 'servicesRest/v2_5_000/grouperPrivileges'
 
         # Why is it that this is "Lite" only?
         data = {
@@ -382,7 +382,7 @@ class Grouper(object):
     def assign_privileges(self, privilege_type, privilege_names, allowed=True,
                           stem=None, group=None, members=None,
                           replace_existing=False):
-        url = 'servicesRest/v2_1_005/grouperPrivileges'
+        url = 'servicesRest/v2_5_000/grouperPrivileges'
 
         data = {
             'WsRestAssignGrouperPrivilegesRequest': {
@@ -423,7 +423,7 @@ class Grouper(object):
         """
         Assign attribute/value pairs to a list of stems or groups.
         """
-        url = 'servicesRest/v2_1_005/attributeAssignments'
+        url = 'servicesRest/v2_5_000/attributeAssignments'
 
         if attr_op not in ['assign_attr', 'add_attr', 'remove_attr']:
             raise Exception("Unknown attribute assign operation")
@@ -471,7 +471,7 @@ class Grouper(object):
         return response
 
     def get_attribute_assignments(self, stems=None, groups=None, attributes=None):
-        url = 'servicesRest/v2_1_005/attributeAssignments'
+        url = 'servicesRest/v2_5_000/attributeAssignments'
 
         data = {
             'WsRestGetAttributeAssignmentsRequest': {
